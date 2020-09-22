@@ -1,4 +1,9 @@
-.header {
-  display: flex;
-  justify-content: center;
+.box-1,
+.box-2,
+.box-3 {
+  width: 150px;
+}
+
+.box-4 {
+  width: 85%;
 }

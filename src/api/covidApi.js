@@ -31,6 +31,25 @@ export async function fetchCountries() {
 
     return countries.map((country) => country.name);
   } catch (error) {
-    console.log("Error fetching the data");
+    console.log("Error fetching countries");
+  }
+}
+
+export async function fetchDailyRate() {
+  try {
+    const response = await axios.get(`${url}/daily`);
+    const data = response.data;
+
+    const confirmed = data.map((element) => element.totalConfirmed);
+    const days = data.map((element) => element.reportDate);
+    const deaths = data.map((element) => element.deaths.total);
+
+    return {
+      confirmed: confirmed,
+      days: days,
+      deaths: deaths,
+    };
+  } catch (error) {
+    console.log("error fetching daily rate data");
   }
 }
