@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { fetchDailyRate } from "../api/covidApi";
 
-function Chart() {
+function LineChart() {
   const [dailyRate, setDailyRate] = useState({});
 
   useEffect(() => {
@@ -36,4 +36,4 @@ function Chart() {
   return <Line data={data} />;
 }
 
-export default Chart;
+export default LineChart;

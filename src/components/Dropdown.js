@@ -18,7 +18,9 @@ function Dropdown(props) {
         <NativeSelect onChange={props.ChangeHandler}>
           <option value="">Global</option>
           {countries.map((country) => (
-            <option value={country}>{country}</option>
+            <option key={country} value={country}>
+              {country}
+            </option>
           ))}
         </NativeSelect>
       </FormControl>

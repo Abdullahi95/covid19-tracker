@@ -4,22 +4,32 @@ import "./App.css";
 import { Grid, Box } from "@material-ui/core";
 import fetchData from "./api/covidApi";
 import Dropdown from "./components/Dropdown";
-import Chart from "./components/Chart";
+import LineChart from "./components/LineChart";
+import BarChart from "./components/BoxChart";
 
 function App() {
   const [country, setCountry] = useState("");
   const [data, setData] = useState("");
+  const [isGlobal, setIsGlobal] = useState(true);
 
   useEffect(() => {
-    async function data() {
-      fetchData(country).then((data) => setData(data));
+    async function getData() {
+      fetchData(country).then((res) => setData(res));
     }
-    data();
+    getData();
   }, [country]);
 
   function onChange(event) {
     setCountry(event.target.value);
   }
+
+  useEffect(() => {
+    if (country !== "") {
+      setIsGlobal(false);
+    } else {
+      setIsGlobal(true);
+    }
+  }, [country]);
 
   return (
     <>
@@ -43,7 +53,7 @@ function App() {
       </Grid>
       <Grid container justify="center">
         <Box className="box-4">
-          <Chart />
+          {isGlobal ? <LineChart /> : <BarChart country={country} />}
         </Box>
       </Grid>
     </>
